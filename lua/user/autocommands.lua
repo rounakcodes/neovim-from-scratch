@@ -29,10 +29,6 @@ vim.cmd [[
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
   
-  augroup AUTOSAVE
-    au!
-    autocmd InsertLeave, TextChanged, FocusLost * silent! update
-  augroup END
 ]]
 
 -- Autoformat

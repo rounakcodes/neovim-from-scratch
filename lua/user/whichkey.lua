@@ -79,6 +79,7 @@ local opts = {
 }
 
 local mappings = {
+  -- ['z'] = { "<cmd>s/abc/\={'abc':'xyz','Abc':'Xyz'}[submatch(0)]/i", "replace keeping case" },
   ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
   ["b"] = {
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",

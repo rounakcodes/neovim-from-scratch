@@ -5,14 +5,18 @@ end
 
 local lspconfig = require("lspconfig")
 
-local servers = { "jsonls", "sumneko_lua" }
+local servers = { "tsserver" }
 
 lsp_installer.setup {
 	ensure_installed = servers
 }
 
+
+local util = require 'lspconfig.util'
+
 for _, server in pairs(servers) do
 	local opts = {
+    root_dir = util.root_pattern('.git'),
 		on_attach = require("user.lsp.handlers").on_attach,
 		capabilities = require("user.lsp.handlers").capabilities,
 	}

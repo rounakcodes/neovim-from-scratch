@@ -3,6 +3,15 @@ if not status_ok then
   return
 end
 
+-- Define the function to run the command
+function replace_buffer_with_clipboard()
+    vim.cmd([[%delete | put! +]])
+end
+
+function replace_current_selection_with_clipboard()
+    vim.cmd([['<,'>delete | put! +]])
+end
+
 local setup = {
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
@@ -182,7 +191,29 @@ local mappings = {
     h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
   },
+
+  C = {
+    name = "custom",
+    b = { "<cmd>lua replace_buffer_with_clipboard()<cr>", "Replace entire buffer" },
+  }
+}
+
+local visual_mappings = {
+  C = {
+    name = "custom",
+    s = { "<cmd>lua replace_current_selection_with_clipboard()<cr>", "Replace current selection"},
+  }
+}
+
+local visual_opts = {
+  mode = "v", -- NORMAL mode
+  prefix = "<leader>",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = true, -- use `nowait` when creating keymaps
 }
 
 which_key.setup(setup)
 which_key.register(mappings, opts)
+which_key.register(visual_mappings, visual_opts)

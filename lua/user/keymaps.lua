@@ -5,6 +5,9 @@ local term_opts = { silent = true }
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
+-- Alternatively, you can use the following syntax:
+-- vim.api.nvim_set_keymap('n', '<S-;>', '<cmd>FineCmdline<CR>', { noremap = true })
+
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
@@ -69,4 +72,12 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+
+-- command
+--[[ keymap('n', ':', 'q:i', opts) ]]
+keymap("n", "<A-d>", ":d<CR>", opts)
+-- Remap PageUp to C-u and PageDown to C-d in normal mode
+-- NOT WORKING
+keymap('n', '<PageUp>', '<C-u>', opts)
+keymap('n', '<PageDown>', '<C-d>', opts)
 
